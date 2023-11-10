@@ -7,6 +7,8 @@ add_executable(friend_graph main.cpp
         Node.h
         Edge.cpp
         Edge.h
+        Graph.cpp
+        Graph.h
 )
 
 find_package(nlohmann_json CONFIG REQUIRED)
