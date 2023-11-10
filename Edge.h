@@ -16,6 +16,7 @@ public:
     Edge(Node& node1, Node& node2) : from(node1), to(node2), weight(1) {};
     [[nodiscard]] const Node& getFrom() const {return from;}
     [[nodiscard]] const Node& getTo() const {return to;}
+    [[nodiscard]] int getWeight() const {return weight;};
     std::string toString() {
         return std::format("{} --[{}]--> {}", from.getTitle(), weight, to.getTitle());
     };

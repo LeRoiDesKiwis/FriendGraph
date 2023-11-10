@@ -4,6 +4,7 @@
 
 #ifndef GRAPH_H
 #define GRAPH_H
+#include <functional>
 #include <memory>
 #include <vector>
 
@@ -16,8 +17,11 @@ class Graph {
 public:
     Graph(const std::vector<Node*>& nodes, const std::vector<Edge*>& edges) : nodes(nodes), edges(edges) {};
     void draw();
+    [[nodiscard]] int degree(const Node& node, const std::function<bool(const Edge*)>&shouldCount, const std::function<int(const Edge*)>&nodeFunc) const;
     [[nodiscard]] int degreeIn(const Node& node) const;
     [[nodiscard]] int degreeOut(const Node& node) const;
+    [[nodiscard]] int weightedDegreeIn(const Node& node) const;
+    [[nodiscard]] int weightedDegreeOut(const Node& node) const;
 
 private:
     std::vector<Node*> nodes;
