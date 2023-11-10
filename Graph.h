@@ -16,6 +16,8 @@ class Graph {
 public:
     Graph(const std::vector<Node*>& nodes, const std::vector<Edge*>& edges) : nodes(nodes), edges(edges) {};
     void draw();
+    [[nodiscard]] int degreeIn(const Node& node) const;
+    [[nodiscard]] int degreeOut(const Node& node) const;
 
 private:
     std::vector<Node*> nodes;

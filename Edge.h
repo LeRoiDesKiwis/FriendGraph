@@ -12,15 +12,17 @@
 class Edge {
 
 public:
-    Edge(Node& node1, Node& node2, const int weight) : node1(node1), node2(node2), weight(weight) {};
-    Edge(Node& node1, Node& node2) : node1(node1), node2(node2), weight(1) {};
+    Edge(Node& node1, Node& node2, const int weight) : from(node1), to(node2), weight(weight) {};
+    Edge(Node& node1, Node& node2) : from(node1), to(node2), weight(1) {};
+    [[nodiscard]] const Node& getFrom() const {return from;}
+    [[nodiscard]] const Node& getTo() const {return to;}
     std::string toString() {
-        return std::format("{} --[{}]--> {}", node1.getTitle(), weight, node2.getTitle());
+        return std::format("{} --[{}]--> {}", from.getTitle(), weight, to.getTitle());
     };
 
 private:
-    Node& node1;
-    Node& node2;
+    Node& from;
+    Node& to;
     int weight;
 };
 

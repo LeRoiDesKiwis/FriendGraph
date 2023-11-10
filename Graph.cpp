@@ -9,7 +9,10 @@
 void Graph::draw() {
     std::cout << "Il y a " << nodes.size() << " noeuds" << std::endl;
     for (auto node: nodes) {
-        std::cout << "- " << node->getTitle() << std::endl;
+        std::cout << "- " << node->getTitle() <<
+            " Degré out : " << degreeOut(*node) <<
+                " ; Degré in : " << degreeIn(*node) << std::endl
+        ;
     }
 
     std::cout << std::endl;
@@ -17,4 +20,20 @@ void Graph::draw() {
     for(auto edge : edges) {
         std::cout << "- " << edge->toString() << std::endl;
     }
+}
+
+int Graph::degreeIn(const Node& node) const {
+    int degree = 0;
+    for (const auto edge : edges) {
+        if(edge->getTo() == node) degree++;
+    }
+    return degree;
+}
+
+int Graph::degreeOut(const Node& node) const{
+    int degree = 0;
+    for (const auto edge : edges) {
+        if(edge->getFrom() == node) degree++;
+    }
+    return degree;
 }

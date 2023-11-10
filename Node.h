@@ -7,10 +7,10 @@
 #include <string>
 #include <utility>
 
-typedef struct {
+struct Location{
     int x;
     int y;
-} Location;
+};
 
 class Node {
 public:
@@ -19,6 +19,9 @@ public:
     void draw() const;
     [[nodiscard]] const std::string& getTitle() const;
     Location& getLocation();
+    bool operator==(const Node& other) const {
+        return title == other.title;
+    }
 
 private:
     const std::string& title;
