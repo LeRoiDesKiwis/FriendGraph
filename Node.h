@@ -14,10 +14,10 @@ typedef struct {
 
 class Node {
 public:
-    Node(std::string title, const Location& location) : title(std::move(title)), location(location) {};
+    Node(std::string title, const Location& location) : title(title), location(location) {};
 
     void draw() const;
-    std::string& getTitle();
+    std::string getTitle();
     Location& getLocation();
 
 private:
