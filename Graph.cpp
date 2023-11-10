@@ -10,7 +10,7 @@
 void Graph::draw() {
     std::cout << "Il y a " << nodes.size() << " noeuds" << std::endl;
     for (auto node: nodes) {
-        std::cout << "- " << node->getTitle() << std::endl;
+        std::cout << "- " << node->toString() << std::endl;
         std::cout << "\tDegré in : " << degreeIn(*node) << std::endl;
         std::cout << "\tDegré out : " << degreeOut(*node) << std::endl;
         std::cout << "\tDegré in weight : " << weightedDegreeIn(*node) << std::endl;

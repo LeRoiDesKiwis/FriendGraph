@@ -17,11 +17,12 @@ public:
     Node(const std::string title, const Location& location) : title(title), location(location) {};
 
     void draw() const;
-    [[nodiscard]] const std::string getTitle() const;
-    Location& getLocation();
+    [[nodiscard]] std::string getTitle() const {return title;};
+    Location& getLocation(){return location;};
     bool operator==(const Node& other) const {
         return title == other.title;
     }
+    std::string toString();
 
 private:
     const std::string title;

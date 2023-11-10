@@ -17,9 +17,7 @@ public:
     [[nodiscard]] const Node& getFrom() const {return from;}
     [[nodiscard]] const Node& getTo() const {return to;}
     [[nodiscard]] int getWeight() const {return weight;};
-    std::string toString() {
-        return std::format("{} --[{}]--> {}", from.getTitle(), weight, to.getTitle());
-    };
+    std::string toString();
 
 private:
     Node& from;

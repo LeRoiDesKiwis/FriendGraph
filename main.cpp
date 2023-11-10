@@ -6,6 +6,7 @@
 
 #include "Edge.h"
 #include <nlohmann/json.hpp>
+#include <random>
 
 #include "Graph.h"
 
@@ -28,9 +29,12 @@ Graph* parseFromJson(std::string fileName) {
     auto nodesJson = j["nodes"];
     auto edgesJson = j["edges"];
 
-    auto location = new Location(0, 0);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(10, 1000); // Adjust range as needed;
 
     for(auto& nodeJson : nodesJson) {
+        auto location = new Location(dis(gen), dis(gen));
         auto node = new Node(nodeJson["title"].get<std::string>(), *location);
         nodes.push_back(node);
     }

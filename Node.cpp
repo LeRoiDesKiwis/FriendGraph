@@ -5,15 +5,12 @@
 #include "Node.h"
 
 #include <iostream>
+#include <format>
 
 void Node::draw() const {
     std::cout << "[ " << title << " ] ";
 }
 
-const std::string Node::getTitle() const {
-    return title;
-}
-
-Location& Node::getLocation() {
-    return location;
+std::string Node::toString() {
+    return std::format("{}({}, {})", title, location.x, location.y);
 }

@@ -3,3 +3,7 @@
 //
 
 #include "Edge.h"
+
+std::string Edge::toString(){
+    return std::format("{} --[{}]--> {}", from.toString(), weight, to.toString());
+};
