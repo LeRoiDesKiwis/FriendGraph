@@ -1,6 +1,11 @@
 #include <iostream>
 
+#include "Node.h"
+#include <string>
+
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    Location location = {0, 0};
+    const auto node = new Node("LeRoiDesKiwis", location);
+    node->draw();
     return 0;
 }

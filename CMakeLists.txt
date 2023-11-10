@@ -4,4 +4,8 @@ project(friend_graph)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(friend_graph main.cpp
-        Node.h)
+        Node.cpp
+        Node.h
+        Edge.cpp
+        Edge.h
+)
