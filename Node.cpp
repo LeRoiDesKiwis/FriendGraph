@@ -10,7 +10,7 @@ void Node::draw() const {
     std::cout << "[ " << title << " ] ";
 }
 
-std::string Node::getTitle() {
+const std::string& Node::getTitle() const {
     return title;
 }
 

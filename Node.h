@@ -17,7 +17,7 @@ public:
     Node(const std::string& title, const Location& location) : title(title), location(location) {};
 
     void draw() const;
-    std::string& getTitle();
+    [[nodiscard]] const std::string& getTitle() const;
     Location& getLocation();
 
 private:
