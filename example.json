@@ -1,0 +1,40 @@
+{
+  "nodes": [
+    {
+      "title": "kiwi"
+    },
+    {
+      "title": "uwu"
+    },
+    {
+      "title": "owo"
+    }
+  ],
+  "edges": [
+    {
+      "from": "uwu",
+      "to": "owo",
+      "weight": 3
+    },
+    {
+      "from": "owo",
+      "to": "uwu",
+      "weight": 5
+    },
+    {
+      "from": "kiwi",
+      "to": "uwu",
+      "weight": 10
+    },
+    {
+      "from": "owo",
+      "to": "kiwi",
+      "weight": -2
+    },
+    {
+      "from": "uwu",
+      "to": "kiwi",
+      "weight": 20
+    }
+  ]
+}

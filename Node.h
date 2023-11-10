@@ -14,17 +14,17 @@ struct Location{
 
 class Node {
 public:
-    Node(const std::string& title, const Location& location) : title(title), location(location) {};
+    Node(const std::string title, const Location& location) : title(title), location(location) {};
 
     void draw() const;
-    [[nodiscard]] const std::string& getTitle() const;
+    [[nodiscard]] const std::string getTitle() const;
     Location& getLocation();
     bool operator==(const Node& other) const {
         return title == other.title;
     }
 
 private:
-    const std::string& title;
+    const std::string title;
     Location location;
 
 };
