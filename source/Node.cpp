@@ -2,7 +2,7 @@
 // Created by leroideskiwis on 10/11/23.
 //
 
-#include "Node.h"
+#include "../headers/Node.h"
 
 #include <iostream>
 #include <format>

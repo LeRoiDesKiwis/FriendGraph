@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "GraphWidget.h"
+#include "../headers/GraphWidget.h"
 #include <QMouseEvent>
 #include <QInputDialog>
 #include <QLineEdit>

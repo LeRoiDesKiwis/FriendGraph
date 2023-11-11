@@ -2,7 +2,7 @@
 // Created by leroideskiwis on 10/11/23.
 //
 
-#include "Graph.h"
+#include "../headers/Graph.h"
 
 int Graph::degree(const Node& node, const std::function<bool(const Edge*)>&shouldCount, const std::function<int(const Edge*)>&nodeFunc) const {
     int degree = 0;

@@ -1,15 +1,15 @@
 #include <fstream>
 #include <iostream>
 
-#include "Node.h"
+#include "../headers/Node.h"
 #include <string>
 
-#include "Edge.h"
+#include "../headers/Edge.h"
 #include <nlohmann/json.hpp>
 #include <random>
 
-#include "Graph.h"
-#include "GraphWidget.h"
+#include "../headers/Graph.h"
+#include "../headers/GraphWidget.h"
 
 #include <QApplication>
 
