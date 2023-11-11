@@ -7,6 +7,7 @@
 #include <format>
 
 #include "Node.h"
+class Graph;
 
 
 class Edge {
@@ -19,12 +20,12 @@ public:
     [[nodiscard]] int getWeight() const {return weight;};
     std::string toString();
 
-    void draw(QPainter *pPainter);
-
+    void draw(QPainter *pPainter, Graph *graph);
 private:
     Node& from;
     Node& to;
     int weight;
+
 };
 
 

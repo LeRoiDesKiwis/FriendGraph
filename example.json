@@ -26,12 +26,12 @@
     {
       "from": "uwu",
       "to": "owo",
-      "weight": 3
+      "weight": 4
     },
     {
       "from": "owo",
       "to": "uwu",
-      "weight": 5
+      "weight": 6
     },
     {
       "from": "kiwi",
@@ -47,11 +47,6 @@
       "from": "uwu",
       "to": "kiwi",
       "weight": 2
-    },
-    {
-      "from": "owu",
-      "to": "kiwi",
-      "weight": 4
     }
   ]
 }

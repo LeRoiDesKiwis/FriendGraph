@@ -24,6 +24,8 @@ public:
     [[nodiscard]] int weightedDegreeIn(const Node& node) const;
     [[nodiscard]] int weightedDegreeOut(const Node& node) const;
 
+    [[nodiscard]] std::vector<Node*> getNodes() {return nodes;};
+
 private:
     std::vector<Node*> nodes;
     std::vector<Edge*> edges;

@@ -15,15 +15,15 @@ struct Location{
 
 class Node {
 public:
-    Node(const std::string title, const Location& location, int radius = 20) : title(title), location(location), radius(radius) {};
+    Node(const std::string title, const Location& location) : title(title), location(location) {};
 
-    void draw(QPainter *pPainter) const;
+    void draw(QPainter *pPainter, int radius) const;
     [[nodiscard]] std::string getTitle() const {return title;};
     Location& getLocation(){return location;};
     bool operator==(const Node& other) const {
         return title == other.title;
     }
-    [[nodiscard]] Location getMiddle() const;
+    [[nodiscard]] Location getMiddle(int radius) const;
     std::string toString();
 
     [[nodiscard]] int getRadius() const;
@@ -31,7 +31,6 @@ public:
 private:
     const std::string title;
     Location location;
-    int radius;
 };
 
 #endif //NODE_H
