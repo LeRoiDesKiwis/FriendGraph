@@ -34,8 +34,10 @@ Graph* parseFromJson(std::string fileName) {
     std::uniform_int_distribution<> dis(10, 1000); // Adjust range as needed;
 
     for(auto& nodeJson : nodesJson) {
-        auto location = new Location(dis(gen), dis(gen));
-        auto node = new Node(nodeJson["title"].get<std::string>(), *location);
+        Location location{};
+        if(nodeJson["location"] == nullptr) location = {dis(gen), dis(gen)};
+        else location = {nodeJson["location"]["x"].get<int>(), nodeJson["location"]["y"].get<int>()};
+        auto node = new Node(nodeJson["title"].get<std::string>(), location);
         nodes.push_back(node);
     }
 

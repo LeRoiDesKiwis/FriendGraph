@@ -1,13 +1,25 @@
 {
   "nodes": [
     {
-      "title": "kiwi"
+      "title": "kiwi",
+      "location": {
+        "x": 200,
+        "y": 300
+      }
     },
     {
-      "title": "uwu"
+      "title": "uwu",
+        "location": {
+            "x": 300,
+            "y": 400
+        }
     },
     {
-      "title": "owo"
+      "title": "owo",
+        "location": {
+            "x": 300,
+            "y": 500
+        }
     }
   ],
   "edges": [
