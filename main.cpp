@@ -10,6 +10,8 @@
 
 #include "Graph.h"
 
+#include <QApplication>
+
 Graph* parseFromJson(std::string fileName);
 
 int main() {
