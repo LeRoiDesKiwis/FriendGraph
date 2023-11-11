@@ -27,26 +27,6 @@
       "from": "uwu",
       "to": "owo",
       "weight": 4
-    },
-    {
-      "from": "owo",
-      "to": "uwu",
-      "weight": 6
-    },
-    {
-      "from": "kiwi",
-      "to": "uwu",
-      "weight": 8
-    },
-    {
-      "from": "owo",
-      "to": "kiwi",
-      "weight": 1
-    },
-    {
-      "from": "uwu",
-      "to": "kiwi",
-      "weight": 2
     }
   ]
 }

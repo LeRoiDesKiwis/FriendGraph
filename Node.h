@@ -15,7 +15,7 @@ struct Location{
 
 class Node {
 public:
-    Node(const std::string title, const Location& location) : title(title), location(location) {};
+    Node(const std::string title, const Location& location, const Qt::GlobalColor color = Qt::black) : title(title), location(location), color(color){};
 
     void draw(QPainter *pPainter, int radius) const;
     [[nodiscard]] std::string getTitle() const {return title;};
@@ -26,11 +26,15 @@ public:
     [[nodiscard]] Location getMiddle(int radius) const;
     std::string toString();
 
-    [[nodiscard]] int getRadius() const;
+    [[nodiscard]] bool isClicked(Location location, int radius) const;
+
+
+    void setColor(Qt::GlobalColor color);
 
 private:
     const std::string title;
     Location location;
+    Qt::GlobalColor color;
 };
 
 #endif //NODE_H

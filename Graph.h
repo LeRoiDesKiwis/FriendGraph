@@ -26,6 +26,8 @@ public:
 
     [[nodiscard]] std::vector<Node*> getNodes() {return nodes;};
 
+    void addEdge(Node &node, Node &node1);
+
 private:
     std::vector<Node*> nodes;
     std::vector<Edge*> edges;

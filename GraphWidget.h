@@ -15,10 +15,13 @@ public:
     //fix référence indéfinie vers « vtable for GraphWidget »
     explicit GraphWidget(Graph* graph, QWidget* parent = nullptr) : QWidget(parent), graph(graph) {};
     void paintEvent(QPaintEvent* event) override;
-    virtual ~GraphWidget() {};
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent* event) override;
 
 private:
     Graph* graph;
+    Node* selectedNode = nullptr;
 };
 
 

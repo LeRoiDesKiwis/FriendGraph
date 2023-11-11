@@ -49,4 +49,9 @@ void Graph::draw(QPainter* painter) {
     }
 }
 
+void Graph::addEdge(Node &node, Node &node1) {
+    edges.push_back(new Edge(node, node1));
+
+}
+
 
