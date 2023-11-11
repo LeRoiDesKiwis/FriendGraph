@@ -19,6 +19,28 @@ void GraphWidget::paintEvent(QPaintEvent *event) {
     graph->draw(&painter);
 }
 
+void GraphWidget::addEdge(QMouseEvent* event){
+    for(auto node : graph->getNodes()) {
+        std::cout << node->toString() << std::endl;
+        if(node->isClicked({event->pos().x(), event->pos().y()})) {
+            std::cout << "new edge" << " from " << selectedNode->toString() << " to " << node->toString() << std::endl;
+            bool ok;
+            QString text = QInputDialog::getText(this, tr("Link two nodes"),
+                                                 tr("Edge size: "), QLineEdit::Normal,
+                                                 "", &ok);
+            if (ok && !text.isEmpty()) {
+                // Add your node here using the text as the name
+                int size = 1;
+                if(isNumber(text.toStdString())) size = std::stoi(text.toStdString());
+                Edge* edge = new Edge(*selectedNode, *node, size);
+                graph->addEdge(edge);
+            }
+            break;
+        }
+    }
+}
+
+
 void GraphWidget::mousePressEvent(QMouseEvent *event) {
 
     if(event->button() == Qt::LeftButton){
@@ -40,13 +62,13 @@ void GraphWidget::mousePressEvent(QMouseEvent *event) {
             if(selectedNode != nullptr) {
                 selectedNode->setColor(Qt::black);
                 selectedNode = nullptr;
+                return;
             }
             bool ok;
             QString text = QInputDialog::getText(this, tr("Add Node"),
                                                  tr("Node name:"), QLineEdit::Normal,
                                                  "", &ok);
             if (ok && !text.isEmpty()) {
-                // Add your node here using the text as the name
                 Node *node = new Node(text.toStdString(), {event->pos().x(), event->pos().y()});
                 graph->addNode(node);
             }
@@ -55,33 +77,18 @@ void GraphWidget::mousePressEvent(QMouseEvent *event) {
     else if(event->button() == Qt::RightButton) {
         if(selectedNode != nullptr) {
             std::cout << "not null" << std::endl;
-            for(auto node : graph->getNodes()) {
-                std::cout << node->toString() << std::endl;
-                if(node->isClicked({event->pos().x(), event->pos().y()})) {
-                    std::cout << "new edge" << " from " << selectedNode->toString() << " to " << node->toString() << std::endl;
-                    bool ok;
-                    QString text = QInputDialog::getText(this, tr("Link two nodes"),
-                                                         tr("Edge size: "), QLineEdit::Normal,
-                                                         "", &ok);
-                    if (ok && !text.isEmpty()) {
-                        // Add your node here using the text as the name
-                        int size = 1;
-                        if(isNumber(text.toStdString())) size = std::stoi(text.toStdString());
-                        Edge* edge = new Edge(*selectedNode, *node, size);
-                        graph->addEdge(edge);
-                    }
-                    break;
-                }
-            }
         }
+        addEdge(event);
     }
     update();
 }
 
 void GraphWidget::mouseMoveEvent(QMouseEvent *event) {
     if(selectedNode != nullptr && mousePressed) {
-        selectedNode->getLocation().x = event->pos().x();
-        selectedNode->getLocation().y = event->pos().y();
+        Location loc = selectedNode->adaptMiddle({event->pos().x(), event->pos().y()});
+        selectedNode->getLocation().x = loc.x;
+        selectedNode->getLocation().y = loc.y;
+        update();
     }
 }
 

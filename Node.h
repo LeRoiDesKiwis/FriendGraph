@@ -38,6 +38,10 @@ public:
 
     void setNodeSize(Graph *graph);
 
+    [[nodiscard]] Location adaptMiddle(Location location) const {
+        return Location{location.x - getSize()/2, location.y - getSize()/2};
+    }
+
 private:
     const std::string title;
     Location location;

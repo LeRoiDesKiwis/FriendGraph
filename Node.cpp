@@ -25,7 +25,9 @@ std::string Node::toString() {
 }
 
 bool Node::isClicked(Location location) const {
-    return location.x >= this->location.x && location.x <= this->location.x + getSize() && location.y >= this->location.y && location.y <= this->location.y + getSize();
+    //TODO make the hitbox a circle
+    return (location.x >= getMiddle().x-getSize()/2 && location.x <= getMiddle().x + getSize()/2) &&
+           (location.y >= getMiddle().y-getSize()/2 && location.y <= getMiddle().y + getSize()/2);
 }
 
 void Node::setColor(Qt::GlobalColor color) {

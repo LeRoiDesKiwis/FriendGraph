@@ -22,6 +22,8 @@ private:
     Graph* graph;
     Node* selectedNode = nullptr;
     bool mousePressed = false;
+
+    void addEdge(QMouseEvent *event);
 };
 
 
