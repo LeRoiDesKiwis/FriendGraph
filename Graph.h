@@ -23,7 +23,6 @@ public:
     [[nodiscard]] int degreeOut(const Node& node) const;
     [[nodiscard]] int weightedDegreeIn(const Node& node) const;
     [[nodiscard]] int weightedDegreeOut(const Node& node) const;
-    [[nodiscard]] bool alreadyExist(Edge* edge) const;
 
     [[nodiscard]] std::vector<Node*> getNodes() {return nodes;};
 
@@ -34,6 +33,8 @@ public:
 private:
     std::vector<Node*> nodes;
     std::vector<Edge*> edges;
+
+    [[nodiscard]] Edge *findEdge(const Node &from, const Node &to) const;
 };
 
 

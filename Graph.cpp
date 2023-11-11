@@ -50,15 +50,18 @@ void Graph::draw(QPainter* painter) {
 }
 
 void Graph::addEdge(Edge* edge) {
-    if(!alreadyExist(edge)) edges.push_back(edge);
+    Edge* existingEdge = findEdge(edge->getFrom(), edge->getTo());
+    if(existingEdge != nullptr) existingEdge->changeWeight(edge->getWeight());
+    else edges.push_back(edge);
 }
 
 void Graph::addNode(Node *pNode) {
     nodes.push_back(pNode);
 }
 
-bool Graph::alreadyExist(Edge* edge) const {
-    return std::ranges::any_of(edges, [edge](const Edge* e){return *e == *edge;});
+Edge* Graph::findEdge(const Node& from, const Node& to) const {
+    for(auto edge : edges) {
+        if(edge->getFrom() == from && edge->getTo() == to) return edge;
+    }
+    return nullptr;
 }
-
-

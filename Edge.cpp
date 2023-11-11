@@ -14,4 +14,8 @@ void Edge::draw(QPainter *pPainter, Graph *graph) {
     Location middleFrom = from.getMiddle(graph->weightedDegreeIn(from)*5);
     Location middleTo = to.getMiddle(graph->weightedDegreeIn(to)*5);
     pPainter->drawLine(middleFrom.x, middleFrom.y, middleTo.x, middleTo.y);
+}
+
+void Edge::changeWeight(int weight) {
+    this->weight = weight;
 };

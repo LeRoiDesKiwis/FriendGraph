@@ -9,6 +9,11 @@
 #include <QLineEdit>
 #include <QMenu>
 
+bool isNumber(const std::string& s)
+{
+    return std::all_of(s.begin(), s.end(), ::isdigit);
+}
+
 void GraphWidget::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     graph->draw(&painter);
@@ -44,7 +49,6 @@ void GraphWidget::mousePressEvent(QMouseEvent *event) {
                 // Add your node here using the text as the name
                 Node *node = new Node(text.toStdString(), {event->pos().x(), event->pos().y()});
                 graph->addNode(node);
-                update();
             }
         }
     }
@@ -55,8 +59,17 @@ void GraphWidget::mousePressEvent(QMouseEvent *event) {
                 std::cout << node->toString() << std::endl;
                 if(node->isClicked({event->pos().x(), event->pos().y()}, 20)) {
                     std::cout << "new edge" << " from " << selectedNode->toString() << " to " << node->toString() << std::endl;
-                    Edge* edge = new Edge(*selectedNode, *node);
-                    graph->addEdge(edge);
+                    bool ok;
+                    QString text = QInputDialog::getText(this, tr("Link two nodes"),
+                                                         tr("Edge size: "), QLineEdit::Normal,
+                                                         "", &ok);
+                    if (ok && !text.isEmpty()) {
+                        // Add your node here using the text as the name
+                        int size = 1;
+                        if(isNumber(text.toStdString())) size = std::stoi(text.toStdString());
+                        Edge* edge = new Edge(*selectedNode, *node, size);
+                        graph->addEdge(edge);
+                    }
                     break;
                 }
             }
@@ -64,6 +77,7 @@ void GraphWidget::mousePressEvent(QMouseEvent *event) {
     }
     update();
 }
+
 void GraphWidget::mouseMoveEvent(QMouseEvent *event) {
     if(selectedNode != nullptr && mousePressed) {
         selectedNode->getLocation().x = event->pos().x();

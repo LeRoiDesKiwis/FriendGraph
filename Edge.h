@@ -24,6 +24,9 @@ public:
     }
 
     void draw(QPainter *pPainter, Graph *graph);
+
+    void changeWeight(int weight);
+
 private:
     Node& from;
     Node& to;
