@@ -3,6 +3,7 @@ project(friend_graph)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_PREFIX_PATH "/usr/lib64/qt6/bin/qt-cmake")
+set(CMAKE_AUTOMOC ON)
 add_executable(friend_graph main.cpp
         Node.cpp
         Node.h
@@ -10,6 +11,8 @@ add_executable(friend_graph main.cpp
         Edge.h
         Graph.cpp
         Graph.h
+        GraphWidget.cpp
+        GraphWidget.h
 )
 
 find_package(nlohmann_json CONFIG REQUIRED)

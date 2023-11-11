@@ -36,17 +36,17 @@
     {
       "from": "kiwi",
       "to": "uwu",
-      "weight": 10
+      "weight": 8
     },
     {
       "from": "owo",
       "to": "kiwi",
-      "weight": -2
+      "weight": 1
     },
     {
       "from": "uwu",
       "to": "kiwi",
-      "weight": 20
+      "weight": 10
     }
   ]
 }

@@ -6,6 +6,7 @@
 #define NODE_H
 #include <string>
 #include <utility>
+#include <QPainter>
 
 struct Location{
     int x;
@@ -16,7 +17,7 @@ class Node {
 public:
     Node(const std::string title, const Location& location) : title(title), location(location) {};
 
-    void draw() const;
+    void draw(QPainter *pPainter) const;
     [[nodiscard]] std::string getTitle() const {return title;};
     Location& getLocation(){return location;};
     bool operator==(const Node& other) const {

@@ -19,6 +19,8 @@ public:
     [[nodiscard]] int getWeight() const {return weight;};
     std::string toString();
 
+    void draw(QPainter *pPainter);
+
 private:
     Node& from;
     Node& to;

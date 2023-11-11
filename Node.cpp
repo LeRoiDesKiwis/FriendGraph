@@ -6,9 +6,10 @@
 
 #include <iostream>
 #include <format>
+#define SIZE 10
 
-void Node::draw() const {
-    std::cout << "[ " << title << " ] ";
+void Node::draw(QPainter *pPainter) const {
+    pPainter->drawEllipse(location.x, location.y, SIZE, SIZE);
 }
 
 std::string Node::toString() {

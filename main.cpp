@@ -9,16 +9,19 @@
 #include <random>
 
 #include "Graph.h"
+#include "GraphWidget.h"
 
 #include <QApplication>
 
 Graph* parseFromJson(std::string fileName);
 
-int main() {
+int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
     auto graph = parseFromJson("example.json");
-    graph->draw();
+    auto graphWidget = new GraphWidget(graph, nullptr);
+    graphWidget->show();
 
-    return 0;
+    return QApplication::exec();
 }
 
 Graph* parseFromJson(std::string fileName) {
