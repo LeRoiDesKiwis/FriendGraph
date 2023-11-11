@@ -26,7 +26,7 @@ void GraphWidget::mousePressEvent(QMouseEvent *event) {
         bool found = false;
         for(auto node : graph->getNodes()) {
             std::cout << node->toString() << std::endl;
-            if(node->isClicked({event->pos().x(), event->pos().y()}, 20)) {
+            if(node->isClicked({event->pos().x(), event->pos().y()})) {
                 std::cout << " [SELECTED] " << std::flush;
                 if(selectedNode != nullptr) selectedNode->setColor(Qt::black);
                 selectedNode = node;
@@ -57,7 +57,7 @@ void GraphWidget::mousePressEvent(QMouseEvent *event) {
             std::cout << "not null" << std::endl;
             for(auto node : graph->getNodes()) {
                 std::cout << node->toString() << std::endl;
-                if(node->isClicked({event->pos().x(), event->pos().y()}, 20)) {
+                if(node->isClicked({event->pos().x(), event->pos().y()})) {
                     std::cout << "new edge" << " from " << selectedNode->toString() << " to " << node->toString() << std::endl;
                     bool ok;
                     QString text = QInputDialog::getText(this, tr("Link two nodes"),
@@ -82,7 +82,6 @@ void GraphWidget::mouseMoveEvent(QMouseEvent *event) {
     if(selectedNode != nullptr && mousePressed) {
         selectedNode->getLocation().x = event->pos().x();
         selectedNode->getLocation().y = event->pos().y();
-        update();
     }
 }
 

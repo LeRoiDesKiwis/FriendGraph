@@ -12,7 +12,6 @@
 class GraphWidget : public QWidget{
     Q_OBJECT
 public:
-    //fix référence indéfinie vers « vtable for GraphWidget »
     explicit GraphWidget(Graph* graph, QWidget* parent = nullptr) : QWidget(parent), graph(graph) {};
     void paintEvent(QPaintEvent* event) override;
     void mousePressEvent(QMouseEvent *event) override;

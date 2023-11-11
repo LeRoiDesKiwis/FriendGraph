@@ -9,25 +9,33 @@
 #define TEXT_SIZE 15
 #define OFFSET_RADIUS 10
 
-void Node::draw(QPainter *pPainter, int radius) const {
+void Node::draw(QPainter *pPainter) const {
     pPainter->setPen(QPen(color, 2, Qt::SolidLine, Qt::RoundCap));
-    pPainter->drawEllipse(location.x, location.y, radius+OFFSET_RADIUS, radius+OFFSET_RADIUS);
+    pPainter->drawEllipse(location.x, location.y, getSize(), getSize());
     pPainter->setPen(QPen(Qt::black, 1, Qt::SolidLine, Qt::RoundCap));
     pPainter->setFont(QFont("Arial", TEXT_SIZE));
-    pPainter->drawText(location.x - radius, location.y - radius, QString::fromStdString(title));
+    pPainter->drawText(location.x - getSize(), location.y - getSize(), QString::fromStdString(title));
 }
 
-Location Node::getMiddle(int radius) const{
-    return Location{location.x + radius/2, location.y + radius/2};
+Location Node::getMiddle() const{
+    return Location{location.x + getSize()/2, location.y + getSize()/2};
 }
 std::string Node::toString() {
     return std::format("{}({}, {})", title, location.x, location.y);
 }
 
-bool Node::isClicked(Location location, int radius) const {
-    return location.x >= this->location.x && location.x <= this->location.x + radius && location.y >= this->location.y && location.y <= this->location.y + radius;
+bool Node::isClicked(Location location) const {
+    return location.x >= this->location.x && location.x <= this->location.x + getSize() && location.y >= this->location.y && location.y <= this->location.y + getSize();
 }
 
 void Node::setColor(Qt::GlobalColor color) {
     this->color = color;
+}
+
+int Node::getSize() const {
+    return size+OFFSET_RADIUS;
+}
+
+void Node::setNodeSize(Graph *graph) {
+    size = graph->weightedDegreeIn(*this);
 }

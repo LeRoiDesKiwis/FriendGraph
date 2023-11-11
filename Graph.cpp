@@ -42,7 +42,8 @@ int Graph::weightedDegreeIn(const Node& node) const {
 
 void Graph::draw(QPainter* painter) {
     for(auto node : nodes) {
-        node->draw(painter, weightedDegreeIn(*node)*5);
+        node->draw(painter);
+        node->setNodeSize(this);
     }
     for(auto edge : edges) {
         edge->draw(painter, this);
@@ -53,10 +54,14 @@ void Graph::addEdge(Edge* edge) {
     Edge* existingEdge = findEdge(edge->getFrom(), edge->getTo());
     if(existingEdge != nullptr) existingEdge->changeWeight(edge->getWeight());
     else edges.push_back(edge);
+    edge->getFrom().setNodeSize(this);
+    edge->getTo().setNodeSize(this);
+
 }
 
 void Graph::addNode(Node *pNode) {
     nodes.push_back(pNode);
+    pNode->setNodeSize(this);
 }
 
 Edge* Graph::findEdge(const Node& from, const Node& to) const {
@@ -64,4 +69,10 @@ Edge* Graph::findEdge(const Node& from, const Node& to) const {
         if(edge->getFrom() == from && edge->getTo() == to) return edge;
     }
     return nullptr;
+}
+
+Graph::Graph(const std::vector<Node *> &nodes, const std::vector<Edge *> &edges) : nodes(nodes), edges(edges){
+    for(auto node : nodes) {
+        node->setNodeSize(this);
+    }
 }
