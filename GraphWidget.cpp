@@ -5,20 +5,23 @@
 #include <iostream>
 #include "GraphWidget.h"
 #include <QMouseEvent>
+#include <QInputDialog>
+#include <QLineEdit>
+#include <QMenu>
 
 void GraphWidget::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     graph->draw(&painter);
 }
 
-void GraphWidget::mousePressEvent(QMouseEvent *e) {
+void GraphWidget::mousePressEvent(QMouseEvent *event) {
 
-    if(e->button() == Qt::LeftButton){
+    if(event->button() == Qt::LeftButton){
         mousePressed = true;
         bool found = false;
         for(auto node : graph->getNodes()) {
             std::cout << node->toString() << std::endl;
-            if(node->isClicked({e->pos().x(), e->pos().y()}, 20)) {
+            if(node->isClicked({event->pos().x(), event->pos().y()}, 20)) {
                 std::cout << " [SELECTED] " << std::flush;
                 if(selectedNode != nullptr) selectedNode->setColor(Qt::black);
                 selectedNode = node;
@@ -28,20 +31,32 @@ void GraphWidget::mousePressEvent(QMouseEvent *e) {
             }
 
         }
-        if(!found && selectedNode != nullptr){
-            selectedNode->setColor(Qt::black);
-            selectedNode = nullptr;
+        if(!found){
+            if(selectedNode != nullptr) {
+                selectedNode->setColor(Qt::black);
+                selectedNode = nullptr;
+            }
+            bool ok;
+            QString text = QInputDialog::getText(this, tr("Add Node"),
+                                                 tr("Node name:"), QLineEdit::Normal,
+                                                 "", &ok);
+            if (ok && !text.isEmpty()) {
+                // Add your node here using the text as the name
+                Node *node = new Node(text.toStdString(), {event->pos().x(), event->pos().y()});
+                graph->addNode(node);
+                update();
+            }
         }
     }
-    else if(e->button() == Qt::RightButton) {
-        std ::cout << selectedNode->toString() << std::endl;
+    else if(event->button() == Qt::RightButton) {
         if(selectedNode != nullptr) {
             std::cout << "not null" << std::endl;
             for(auto node : graph->getNodes()) {
                 std::cout << node->toString() << std::endl;
-                if(node->isClicked({e->pos().x(), e->pos().y()}, 20)) {
+                if(node->isClicked({event->pos().x(), event->pos().y()}, 20)) {
                     std::cout << "new edge" << " from " << selectedNode->toString() << " to " << node->toString() << std::endl;
-                    graph->addEdge(*selectedNode, *node);
+                    Edge* edge = new Edge(*selectedNode, *node);
+                    graph->addEdge(edge);
                     break;
                 }
             }

@@ -19,6 +19,9 @@ public:
     [[nodiscard]] const Node& getTo() const {return to;}
     [[nodiscard]] int getWeight() const {return weight;};
     std::string toString();
+    [[nodiscard]] bool operator==(const Edge& other) const {
+        return from == other.from && to == other.to;
+    }
 
     void draw(QPainter *pPainter, Graph *graph);
 private:

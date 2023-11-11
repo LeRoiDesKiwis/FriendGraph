@@ -49,9 +49,16 @@ void Graph::draw(QPainter* painter) {
     }
 }
 
-void Graph::addEdge(Node &node, Node &node1) {
-    edges.push_back(new Edge(node, node1));
+void Graph::addEdge(Edge* edge) {
+    if(!alreadyExist(edge)) edges.push_back(edge);
+}
 
+void Graph::addNode(Node *pNode) {
+    nodes.push_back(pNode);
+}
+
+bool Graph::alreadyExist(Edge* edge) const {
+    return std::ranges::any_of(edges, [edge](const Edge* e){return *e == *edge;});
 }
 
 

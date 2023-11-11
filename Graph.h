@@ -23,10 +23,13 @@ public:
     [[nodiscard]] int degreeOut(const Node& node) const;
     [[nodiscard]] int weightedDegreeIn(const Node& node) const;
     [[nodiscard]] int weightedDegreeOut(const Node& node) const;
+    [[nodiscard]] bool alreadyExist(Edge* edge) const;
 
     [[nodiscard]] std::vector<Node*> getNodes() {return nodes;};
 
-    void addEdge(Node &node, Node &node1);
+    void addEdge(Edge* edge);
+
+    void addNode(Node *pNode);
 
 private:
     std::vector<Node*> nodes;
