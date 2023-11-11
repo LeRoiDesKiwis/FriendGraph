@@ -20,7 +20,7 @@
             "x": 300,
             "y": 500
         }
-    }
+   }
   ],
   "edges": [
     {
@@ -46,7 +46,12 @@
     {
       "from": "uwu",
       "to": "kiwi",
-      "weight": 10
+      "weight": 2
+    },
+    {
+      "from": "owu",
+      "to": "kiwi",
+      "weight": 4
     }
   ]
 }

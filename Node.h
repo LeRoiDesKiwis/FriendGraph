@@ -23,12 +23,12 @@ public:
     bool operator==(const Node& other) const {
         return title == other.title;
     }
+    Location getMiddle() const;
     std::string toString();
 
 private:
     const std::string title;
     Location location;
-
 };
 
 #endif //NODE_H

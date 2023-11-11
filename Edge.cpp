@@ -10,5 +10,7 @@ std::string Edge::toString(){
 
 void Edge::draw(QPainter *pPainter) {
     pPainter->setPen(QPen(Qt::black, weight, Qt::SolidLine, Qt::RoundCap));
-    pPainter->drawLine(from.getLocation().x, from.getLocation().y, to.getLocation().x, to.getLocation().y);
+    Location middleFrom = from.getMiddle();
+    Location middleTo = to.getMiddle();
+    pPainter->drawLine(middleFrom.x, middleFrom.y, middleTo.x, middleTo.y);
 };
