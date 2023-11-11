@@ -22,6 +22,7 @@ public:
 private:
     Graph* graph;
     Node* selectedNode = nullptr;
+    bool mousePressed = false;
 };
 
 

@@ -14,6 +14,7 @@ void GraphWidget::paintEvent(QPaintEvent *event) {
 void GraphWidget::mousePressEvent(QMouseEvent *e) {
 
     if(e->button() == Qt::LeftButton){
+        mousePressed = true;
         bool found = false;
         for(auto node : graph->getNodes()) {
             std::cout << node->toString() << std::endl;
@@ -49,8 +50,13 @@ void GraphWidget::mousePressEvent(QMouseEvent *e) {
     update();
 }
 void GraphWidget::mouseMoveEvent(QMouseEvent *event) {
+    if(selectedNode != nullptr && mousePressed) {
+        selectedNode->getLocation().x = event->pos().x();
+        selectedNode->getLocation().y = event->pos().y();
+        update();
+    }
 }
 
 void GraphWidget::mouseReleaseEvent(QMouseEvent *event) {
-
+    mousePressed = false;
 }
