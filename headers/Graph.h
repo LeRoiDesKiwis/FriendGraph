@@ -34,6 +34,7 @@ public:
     void addNode(Node *pNode);
 
     void save(std::string fileName);
+    ~Graph();
 
 private:
     std::vector<Node*> nodes;

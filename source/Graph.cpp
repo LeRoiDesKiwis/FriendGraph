@@ -113,3 +113,12 @@ void Graph::save(std::string fileName) {
     std::ofstream file(fileName);
     file << j;
 }
+
+Graph::~Graph() {
+    for(auto node : nodes) {
+        delete node;
+    }
+    for(auto edge : edges) {
+        delete edge;
+    }
+}
