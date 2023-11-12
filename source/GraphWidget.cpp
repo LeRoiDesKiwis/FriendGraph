@@ -95,3 +95,11 @@ void GraphWidget::mouseMoveEvent(QMouseEvent *event) {
 void GraphWidget::mouseReleaseEvent(QMouseEvent *event) {
     mousePressed = false;
 }
+
+void GraphWidget::keyPressEvent(QKeyEvent *event) {
+    //ctrl s for save
+    if(event->key() == Qt::Key_S && event->modifiers() == Qt::ControlModifier) {
+        std::cout << "saving" << std::endl;
+        graph->save("example.json");
+    }
+}

@@ -41,10 +41,11 @@ public:
 
     void setNodeSize(Graph *graph);
 
+    nlohmann::basic_json<> toJson();
+
     [[nodiscard]] Location adaptMiddle(Location location) const {
         return Location{location.x - getSize()/2, location.y - getSize()/2};
     }
-
 private:
     std::string title;
     Location location;

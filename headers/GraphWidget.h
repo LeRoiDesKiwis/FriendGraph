@@ -24,6 +24,8 @@ private:
     bool mousePressed = false;
 
     void addEdge(QMouseEvent *event);
+
+    void keyPressEvent(QKeyEvent *event);
 };
 
 

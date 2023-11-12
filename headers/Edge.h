@@ -30,11 +30,12 @@ public:
 
     void changeWeight(int weight);
 
+    nlohmann::basic_json<> toJson();
+
 private:
     Node* from = nullptr;
     Node* to = nullptr;
     int weight;
-
 };
 
 

@@ -49,3 +49,11 @@ Node::Node(nlohmann::json_abi_v3_11_2::basic_json<> json, Location defaultLocati
     this->title = json["title"].get<std::string>();
     this->location = location;
 }
+
+nlohmann::basic_json<> Node::toJson(){
+    auto json = nlohmann::json::object();
+    json["title"] = title;
+    json["location"]["x"] = location.x;
+    json["location"]["y"] = location.y;
+    return json;
+}

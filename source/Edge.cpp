@@ -34,3 +34,11 @@ Edge::Edge(nlohmann::basic_json<> json, std::vector<Node *> nodes) {
     this->to = to;
     this->weight = weight;
 };
+
+nlohmann::basic_json<> Edge::toJson(){
+    auto json = nlohmann::json::object();
+    json["from"] = from->getTitle();
+    json["to"] = to->getTitle();
+    json["weight"] = weight;
+    return json;
+}

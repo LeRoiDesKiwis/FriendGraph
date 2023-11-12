@@ -101,3 +101,15 @@ Graph::Graph(std::string fileName) {
     }
 
 }
+
+void Graph::save(std::string fileName) {
+    nlohmann::json j = nlohmann::json::object();
+    for(auto& node : nodes) {
+        j["nodes"].push_back(node->toJson());
+    }
+    for(auto& edge : edges) {
+        j["edges"].push_back(edge->toJson());
+    }
+    std::ofstream file(fileName);
+    file << j;
+}

@@ -33,6 +33,8 @@ public:
 
     void addNode(Node *pNode);
 
+    void save(std::string fileName);
+
 private:
     std::vector<Node*> nodes;
     std::vector<Edge*> edges;
