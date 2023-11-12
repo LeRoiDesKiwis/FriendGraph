@@ -2,6 +2,9 @@
 // Created by leroideskiwis on 10/11/23.
 //
 
+#include <nlohmann/json.hpp>
+#include <fstream>
+#include <random>
 #include "../headers/Graph.h"
 
 int Graph::degree(const Node& node, const std::function<bool(const Edge*)>&shouldCount, const std::function<int(const Edge*)>&nodeFunc) const {
@@ -75,4 +78,26 @@ Graph::Graph(const std::vector<Node *> &nodes, const std::vector<Edge *> &edges)
     for(auto node : nodes) {
         node->setNodeSize(this);
     }
+}
+
+Graph::Graph(std::string fileName) {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(10, 1000); // Adjust range as needed;
+
+    std::ifstream file(fileName);
+    nlohmann::json j;
+    file >> j;
+    auto nodesJson = j["nodes"];
+    auto edgesJson = j["edges"];
+    for(auto& nodeJson : nodesJson) {
+        auto node = new Node(nodeJson, {dis(gen), dis(gen)});
+        nodes.push_back(node);
+    }
+
+    for(auto& edgeJson : edgesJson) {
+        auto edge = new Edge(edgeJson, nodes);
+        edges.push_back(edge);
+    }
+
 }

@@ -19,6 +19,7 @@ class Graph {
 
 public:
     Graph(const std::vector<Node*>& nodes, const std::vector<Edge*>& edges);
+    Graph(std::string fileName);
     void draw(QPainter *qpainter);
     [[nodiscard]] int degree(const Node& node, const std::function<bool(const Edge*)>&shouldCount, const std::function<int(const Edge*)>&nodeFunc) const;
     [[nodiscard]] int degreeIn(const Node& node) const;

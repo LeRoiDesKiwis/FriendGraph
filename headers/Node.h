@@ -7,6 +7,7 @@
 #include <string>
 #include <utility>
 #include <QPainter>
+#include <nlohmann/json.hpp>
 #include "Graph.h"
 class Graph;
 
@@ -18,6 +19,8 @@ struct Location{
 class Node {
 public:
     Node(const std::string title, const Location& location, const Qt::GlobalColor color = Qt::black) : title(title), location(location), color(color){};
+
+    Node(nlohmann::json_abi_v3_11_2::basic_json<> json, Location defaultLocation);
 
     void draw(QPainter *pPainter) const;
     [[nodiscard]] std::string getTitle() const {return title;};
@@ -43,9 +46,9 @@ public:
     }
 
 private:
-    const std::string title;
+    std::string title;
     Location location;
-    Qt::GlobalColor color;
+    Qt::GlobalColor color = Qt::black;
     int size = 10;
 };
 
