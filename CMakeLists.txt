@@ -15,6 +15,10 @@ add_executable(friend_graph source/main.cpp
         headers/GraphWidget.h
 )
 
-find_package(nlohmann_json CONFIG REQUIRED)
+include(FetchContent)
+
+FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz)
+FetchContent_MakeAvailable(json)
+
 find_package(Qt6Widgets REQUIRED)
 target_link_libraries(friend_graph PRIVATE Qt6::Widgets nlohmann_json::nlohmann_json)
