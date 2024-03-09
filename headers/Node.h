@@ -20,7 +20,7 @@ class Node {
 public:
     Node(const std::string title, const Location& location, const Qt::GlobalColor color = Qt::black) : title(title), location(location), color(color){};
 
-    Node(nlohmann::json_abi_v3_11_2::basic_json<> json, Location defaultLocation);
+    Node(nlohmann::json_abi_v3_11_3::basic_json<> json, Location defaultLocation);
 
     void draw(QPainter *pPainter) const;
     [[nodiscard]] std::string getTitle() const {return title;};

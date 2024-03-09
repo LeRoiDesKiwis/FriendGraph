@@ -42,7 +42,7 @@ void Node::setNodeSize(Graph *graph) {
     size = graph->weightedDegreeIn(*this);
 }
 
-Node::Node(nlohmann::json_abi_v3_11_2::basic_json<> json, Location defaultLocation) {
+Node::Node(nlohmann::json_abi_v3_11_3::basic_json<> json, Location defaultLocation) {
     Location location{};
     if(json["location"] == nullptr) location = defaultLocation;
     else location = {json["location"]["x"].get<int>(), json["location"]["y"].get<int>()};
